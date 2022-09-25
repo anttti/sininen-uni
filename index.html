@@ -7,8 +7,39 @@
       body {
         font-family: sans-serif;
         line-height: 150%;
+        background: black;
+        color: rgba(255,255,255,0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      button {
+        border: 0;
+        background: 0;
+      }
+      .hidden {
+        display: none;
       }
     </style>
+    <script>
+      window.addEventListener('load', () => {
+        const player = document.querySelector("audio");
+        const playIcon = document.querySelector("#play-icon");
+        const pauseIcon = document.querySelector("#pause-icon");
+
+        document.querySelector("#play").addEventListener("click", () => {
+          if (player.paused) {
+            player.play();
+            playIcon.classList.add("hidden");
+            pauseIcon.classList.remove("hidden");
+          } else {
+            player.pause();
+            playIcon.classList.remove("hidden");
+            pauseIcon.classList.add("hidden");
+          }
+        })
+      }); 
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="icon" href="/favicon.ico" sizes="any">
@@ -19,7 +50,18 @@
   </head>
 
   <body>
-    <audio src="sininen-uni.mp3" controls loop></audio>
+    <button id="play">
+      <svg id="play-icon" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#D9D9D9"/>
+        <path d="M35.3827 26.5L75.8827 49.8827L35.3827 73.2654L35.3827 26.5Z" fill="black"/>
+      </svg>
+      <svg id="pause-icon" class="hidden" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#D9D9D9"/>
+        <rect x="25" y="29" width="19" height="43" fill="black"/>
+        <rect x="57" y="29" width="19" height="43" fill="black"/>
+      </svg>
+    </button>
+    <audio class="hidden" src="nukkumatti.mp3" controls loop></audio>
     <p>
       Joka ilta kun lamppu sammuu ja saapuu oikea yö<br />
       niin Nukku-Matti nousee ja ovehen hiljaa lyö<br />
